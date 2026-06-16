@@ -1,1 +1,3 @@
 patient-clustering/*.csv
+measurements.parquet
+cbr-no-code-editor-main

@@ -1,0 +1,37 @@
+{
+    "version": "1.0",
+    "nodeType": "processing",
+    "name": "My Node",
+    "shortDescription": "One-line description (max 200 chars)",
+    "description": "Longer description of what this node does, its inputs and outputs.",
+    "hasInput": true,
+    "inputDescription": "Input data files from upstream nodes",
+    "config": {
+        "name": {
+            "type": "string",
+            "label": "Name",
+            "description": "Unique identifier for this node in the pipeline",
+            "required": true,
+            "unique": true,
+            "placeholder": "e.g. my_step",
+            "validation": {
+                "patternKey": "snake_case"
+            }
+        }
+    },
+    "hasOutput": true,
+    "outputDescription": "Processed output",
+    "outputFiles": [
+        {
+            "name": "result",
+            "format": "parquet",
+            "path": "{{artifacts}}/{{pipeline.name}}/{{execution.timestamp}}/{{node.name}}/result.parquet"
+        }
+    ],
+    "implementation": {
+        "type": "container",
+        "entrypoint": "python main.py",
+        "dockerfilePath": "Dockerfile",
+        "dockerContext": "."
+    }
+}
